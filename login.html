@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iStudy - Faça Sua Inscrição</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f4f6f9;
+            font-family: 'Roboto', sans-serif;
+        }
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .card-login {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container login-container">
+        <div class="row w-100 justify-content-center">
+            <div class="col-md-6 col-lg-5">
+                <div class="text-center mb-4">
+                    <a href="index.html" class="h2 text-dark text-decoration-none fw-bold">iStudy</a>
+                </div>
+                <div class="card card-login p-4">
+                    <div class="card-body">
+                        <h4 class="card-title text-center fw-bold mb-4">Crie sua Conta</h4>
+                        
+                        <div id="mensagem-alerta" class="alert d-none" role="alert"></div>
+                        
+                        <form id="form-cadastro">
+                            <div class="mb-3">
+                                <label for="nome" class="form-label">Nome Completo</label>
+                                <input type="text" class="form-control" id="nome" placeholder="Seu nome completo" required>
+                            </div>
+                            
+                            <div class="mb-3" id="grupo-cpf">
+                                <label for="cpf" class="form-label">CPF (CadÚnico)</label>
+                                <input type="text" class="form-control" id="cpf" placeholder="000.000.000-00" maxlength="14" required>
+                                <div class="form-text text-muted small">Usamos o seu CPF para verificar a elegibilidade no Cadastro Único do Governo Federal.</div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="email" class="form-label">E-mail</label>
+                                <input type="email" class="form-control" id="email" placeholder="seuemail@exemplo.com" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Senha</label>
+                                <input type="password" class="form-control" id="password" placeholder="Crie uma senha forte" required>
+                            </div>
+                            <div class="mb-3 form-check" id="grupo-termos">
+                                <input type="checkbox" class="form-check-input" id="termos" required>
+                                <label class="form-check-label small" for="termos">Aceito os termos de uso e autorizo a consulta ao CadÚnico</label>
+                            </div>
+                            <button type="submit" id="btn-enviar" class="btn btn-primary w-100 fw-bold py-2">Registrar e Acessar</button>
+                        </form>
+                        
+                        <div class="text-center mt-3">
+                            <span class="small text-muted">Já tem uma conta? <a href="#" id="btn-alternar" class="text-decoration-none">Fazer Login</a></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-3">
+                    <a href="index.html" class="text-muted small text-decoration-none">← Voltar para a Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            // Aplica a máscara visual de CPF no input
+            $('#cpf').mask('000.000.000-00', {reverse: true});
+
+            // Lógica para alternar entre a tela de Cadastro e a tela de Login simples
+            $('#btn-alternar').click(function(e) {
+                e.preventDefault();
+                $('#mensagem-alerta').addClass('d-none');
+                let titulo = $('.card-title').text();
+                
+                if (titulo === 'Crie sua Conta') {
+                    $('.card-title').text('Acessar iStudy');
+                    $('#nome, #grupo-cpf, #grupo-termos').hide().find('input').removeAttr('required');
+                    $('button[type="submit"]').text('Entrar');
+                    $(this).text('Criar uma conta');
+                } else {
+                    $('.card-title').text('Crie sua Conta');
+                    $('#nome, #grupo-cpf, #grupo-termos').show().find('input').attr('required', 'required');
+                    $('button[type="submit"]').text('Registrar e Acessar');
+                    $(this).text('Fazer Login');
+                }
+            });
+
+            // INTERCEPTAÇÃO DO ENVIO DO FORMULÁRIO PARA TESTE SIMULADO
+            $('#form-cadastro').submit(function(e) {
+                // Só valida se estiver na tela de Cadastro
+                if ($('.card-title').text() === 'Crie sua Conta') {
+                    e.preventDefault(); 
+                    
+                    let cpfDigitado = $('#cpf').val(); 
+                    let alerta = $('#mensagem-alerta');
+                    let btn = $('#btn-enviar');
+
+                    // 1. Ativa o efeito visual de carregamento (simulando a espera da API)
+                    btn.prop('disabled', true).text('Consultando base do CadÚnico...');
+                    alerta.addClass('d-none');
+
+                    // 2. Simula o tempo de resposta da API (1.5 segundos de espera)
+                    setTimeout(function() {
+                        
+                        // CENÁRIO: Se digitou o CPF de teste super fácil
+                        if (cpfDigitado === '000.000.000-00') {
+                            
+                            alerta.removeClass('d-none alert-danger')
+                                  .addClass('alert-success')
+                                  .text('Elegibilidade confirmada no CadÚnico! Criando sua conta...');
+                            
+                            btn.text('Conta Criada!');
+
+                            setTimeout(function() {
+                                window.location.href = 'dashboard.html';
+                            }, 2000);
+
+                        } else {
+                            alerta.removeClass('d-none alert-success')
+                                  .addClass('alert-danger')
+                                  .text('Inscrição recusada: Este CPF não foi localizado no Cadastro Único ou não atende aos critérios de vulnerabilidade social.');
+                            
+                            btn.prop('disabled', false).text('Registrar e Acessar');
+                        }
+
+                    }, 1500);
+                }
+            });
+
+
+           /* // INTERCEPTAÇÃO DO ENVIO DO FORMULÁRIO PARA CONEXÃO COM A API
+            $('#form-cadastro').submit(function(e) {
+                if ($('.card-title').text() === 'Crie sua Conta') {
+                    e.preventDefault(); 
+                    
+                    let cpfLimpo = $('#cpf').val().replace(/\D/g, ''); 
+                    let alerta = $('#mensagem-alerta');
+                    let btn = $('#btn-enviar');
+
+                    btn.prop('disabled', true).text('Verificando elegibilidade...');
+                    alerta.addClass('d-none');
+
+                    // Chamada AJAX para o seu futuro Backend que conectará à API do CadÚnico
+                    $.ajax({
+                        url: '/api/validar-cadunico', 
+                        method: 'POST',
+                        data: { cpf: cpfLimpo },
+                        success: function(response) {
+                            
+                            alerta.removeClass('d-none alert-danger').addClass('alert-success').text('Elegibilidade confirmada! Conta criada com sucesso.');
+                            btn.text('Sucesso!');
+                        },
+                        error: function(xhr) {
+
+                            alerta.removeClass('d-none alert-success').addClass('alert-danger')
+                                  .text('Inscrição não realizada: Este CPF não foi localizado no Cadastro Único ou não atende aos critérios de baixa renda.');
+                            
+                            btn.prop('disabled', false).text('Registrar e Acessar');
+                        }
+                    });
+                }
+            });
+            */ // FIM DO SCRIPT DE INTERAÇÃO COM A API
+        });
+    </script>
+</body>
+</html>

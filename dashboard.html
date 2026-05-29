@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iStudy - Painel do Aluno</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        body {
+            background-color: #f4f6f9;
+            font-family: 'Roboto', sans-serif;
+        }
+        .navbar-brand fw-bold {
+            color: #0d6efd !important;
+        }
+        .card-curso {
+            transition: transform 0.2s;
+            border: none;
+            border-radius: 10px;
+        }
+        .card-curso:hover {
+            transform: translateY(-5px);
+        }
+        .avatar-perfil {
+            width: 100px;
+            height: 100px;
+            background-color: #0d6efd;
+            color: white;
+            font-size: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+        }
+        .nav-link {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary" href="#">iStudy <span class="badge bg-success text-white small ms-2" style="font-size: 0.6rem;">Elegível CadÚnico</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="aba-cursos"><i class="fa-solid fa-book-open me-1"></i> Meus Cursos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="aba-perfil"><i class="fa-solid fa-user me-1"></i> Meu Perfil</a>
+                    </li>
+                    <li class="nav-item ms-lg-3">
+                        <a class="nav-link text-danger" href="index.html"><i class="fa-solid fa-right-from-bracket me-1"></i> Sair</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container py-5">
+        
+        <section id="conteudo-cursos">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h2 class="fw-bold">Bem-vindo de volta!</h2>
+                    <p class="text-muted">Escolha uma matéria para focar os seus estudos hoje.</p>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 shadow-sm card-curso">
+                        <div class="card-body">
+                            <div class="text-primary mb-2"><i class="fa-solid fa-calculator fa-2x"></i></div>
+                            <h5 class="card-title fw-bold">Matemática e suas Tecnologias</h5>
+                            <p class="card-text text-muted small">Álgebra, Geometria, Estatística e Trigonometria focadas nas pegadinhas clássicas do ENEM.</p>
+                            <div class="progress my-3" style="height: 8px;">
+                                <div class="progress-bar bg-primary" role="progressbar" style="width: 35%"></div>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center small text-muted mb-3">
+                                <span>35% Concluído</span>
+                                <span>12/45 Aulas</span>
+                            </div>
+                            <button class="btn btn-outline-primary w-100 fw-bold">Continuar Estudos</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 shadow-sm card-curso">
+                        <div class="card-body">
+                            <div class="text-success mb-2"><i class="fa-solid fa-flask fa-2x"></i></div>
+                            <h5 class="card-title fw-bold">Ciências da Natureza</h5>
+                            <p class="card-text text-muted small">Tudo sobre Física, Química e Biologia. Entenda de vez Ecologia, Termodinâmica e Estequiometria.</p>
+                            <div class="progress my-3" style="height: 8px;">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 10%"></div>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center small text-muted mb-3">
+                                <span>10% Concluído</span>
+                                <span>4/40 Aulas</span>
+                            </div>
+                            <button class="btn btn-outline-success w-100 fw-bold">Acessar Matéria</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 shadow-sm card-curso">
+                        <div class="card-body">
+                            <div class="text-danger mb-2"><i class="fa-solid fa-pen-feather fa-2x"></i></div>
+                            <h5 class="card-title fw-bold">Redação Nota 1000</h5>
+                            <p class="card-text text-muted small">Aprenda a estrutura dissertativa-argumentativa, conectivos nota 1000 e propostas de intervenção.</p>
+                            <div class="progress my-3" style="height: 8px;">
+                                <div class="progress-bar bg-danger" role="progressbar" style="width: 75%"></div>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center small text-muted mb-3">
+                                <span>75% Concluído</span>
+                                <span>15/20 Aulas</span>
+                            </div>
+                            <button class="btn btn-outline-danger w-100 fw-bold">Revisar Redações</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 shadow-sm card-curso">
+                        <div class="card-body">
+                            <div class="text-warning mb-2"><i class="fa-solid fa-earth-americas fa-2x"></i></div>
+                            <h5 class="card-title fw-bold">Ciências Humanas</h5>
+                            <p class="card-text text-muted small">História do Brasil, Geral, Geografia Humana, Geopolítica, Filosofia e Sociologia de forma integrada.</p>
+                            <div class="progress my-3" style="height: 8px;">
+                                <div class="progress-bar bg-warning" role="progressbar" style="width: 0%"></div>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center small text-muted mb-3">
+                                <span>0% Concluído</span>
+                                <span>0/50 Aulas</span>
+                            </div>
+                            <button class="btn btn-outline-warning w-100 fw-bold">Começar do Zero</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="conteudo-perfil" class="d-none">
+            <h2 class="fw-bold mb-4">Configurações do Perfil</h2>
+            
+            <div class="row g-4">
+                <div class="col-md-4 text-center">
+                    <div class="card p-4 shadow-sm border-0">
+                        <div class="avatar-perfil">
+                            <i class="fa-solid fa-user-graduate"></i>
+                        </div>
+                        <h5 class="fw-bold mb-1" id="perfil-nome-exibicao">Estudante iStudy</h5>
+                        <p class="text-muted small">Aluno Pré-Vestibular</p>
+                        <hr>
+                        <div class="text-start small">
+                            <p class="mb-1"><strong>Status social:</strong> <span class="badge bg-success">Validado via CadÚnico</span></p>
+                            <p class="mb-0"><strong>Inscrição ativa desde:</strong> 2026</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-8">
+                    <div class="card p-4 shadow-sm border-0">
+                        <h5 class="fw-bold mb-4">Dados Pessoais</h5>
+                        <form id="form-perfil">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-bold">Nome Completo</label>
+                                    <input type="text" class="form-control" value="Estudante de Baixa Renda Exemplo">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-bold">E-mail</label>
+                                    <input type="email" class="form-control" value="estudante@exemplo.com">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-bold">CPF (Protegido pela API)</label>
+                                    <input type="text" class="form-control" value="***.***.***-**" disabled>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-bold">Nova Senha</label>
+                                    <input type="password" class="form-control" placeholder="Digite apenas se quiser alterar">
+                                </div>
+                            </div>
+                            <hr class="my-4">
+                            <button type="submit" class="btn btn-primary fw-bold px-4">Salvar Alterações</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            
+            // Clique na aba Cursos
+            $('#aba-cursos').click(function() {
+                $('.nav-link').removeClass('active');
+                $(this).addClass('active');
+                
+                $('#conteudo-perfil').addClass('d-none');
+                $('#conteudo-cursos').removeClass('d-none');
+            });
+
+            // Clique na aba Perfil
+            $('#aba-perfil').click(function() {
+                $('.nav-link').removeClass('active');
+                $(this).addClass('active');
+                
+                $('#conteudo-cursos').addClass('d-none');
+                $('#conteudo-perfil').removeClass('d-none');
+            });
+
+            // Simulação de salvar o perfil
+            $('#form-perfil').submit(function(e) {
+                e.preventDefault();
+                alert('Alterações salvas com sucesso no banco de dados!');
+            });
+        });
+    </script>
+</body>
+</html>
